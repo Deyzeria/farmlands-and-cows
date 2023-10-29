@@ -1,0 +1,43 @@
+{
+  "id": "farmlands-and-cows",
+  "title": "DnD5e: Farmlands and Cows",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {}
+      }
+    ]
+  },
+  "authors": [
+    {
+      "name": "Sinantrarion",
+      "discord": "@sinantrarion",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "/farmlands-and-cows.mjs"
+  ],
+  "url": "https://github.com/Sinantrarion/farmlands-and-cows",
+  "packs": [
+    {
+      "name": "tools",
+      "label": "FAC: Tools",
+      "path": "packs/tools",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "dnd5e",
+      "flags": {}
+    }
+  ]
+}
