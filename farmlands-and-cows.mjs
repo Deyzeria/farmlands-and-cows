@@ -1,3 +1,5 @@
+import FANC from "./config.mjs";
+
 const cusAbilities = [{ label: "Gathering", abbreviation: "gat", type: "physical" }, { label: "Crafting", abbreviation: "crt", type: "mental" }];
 const cusSkills = ['tec', 'mys'];
 
@@ -62,6 +64,7 @@ function SetupTools() {
     { name: "botanist", id: "WZn0cw43rrKDKsqj" },
     { name: "fishing", id: "LdSDyMZndD3maggU" },
     { name: "mining", id: "EsXR8Qt22jFXWFwM" },
+    { name: "skinner", id: "4b3pmjuUycPSUOSD" },
     { name: "alchemist", id: "fwBkOqVKUQoS1PK9" },
     { name: "blacksmith", id: "o2bmv1sXjvHRaHnd" },
     { name: "carpentry", id: "NWEZUrY5mPb9L7vl" },
@@ -74,16 +77,75 @@ function SetupTools() {
     { name: "weaver", id: "T1g0Pt1MAI1oKDkp" },
   ];
   toAdd.forEach(tool => {
-    console.debug(tool);
     toolId[tool.name] = `farmlands-and-cows.tools.${tool.id}`;
   });
 }
 
+function SetupLootTypes() {
+  let toDelete = ['art', 'gear', 'gem', 'junk', 'material', 'resource', 'treasure'];
+
+  toDelete.forEach(name => {
+    delete CONFIG.DND5E.lootTypes[name];
+  });
+
+  CONFIG.DND5E.lootTypes['crafting'] = {
+    label: "Crafting Ingridient",
+    subtypes: {
+      calchemist: "Alchemy Ingridient",
+      cblacksmith: "Blacksmithing Ingridient",
+      ccarpentry: "Carpentry Ingridient",
+      cculinarian: "Culinary Ingridient",
+      cjeweler: "Jewelery Ingridient",
+      cleatherworker: "Leatherworking Ingridient",
+      cpainter: "Painting Ingridient",
+      cscribal: "Scribal Ingridient",
+      ctinker: "Tinkering Ingridient",
+      cweaver: "Weaving Ingridient"
+    }
+  };
+
+  CONFIG.DND5E.lootTypes['mining'] = {
+    label: "Mining Ingridient",
+    subtypes: {
+      stone: "Stone",
+      ore: "Ore",
+      gem: "Gem",
+      dust: "Dust",
+      misc: "Miscellaneous",
+    }
+  };
+
+  CONFIG.DND5E.lootTypes['botany'] = {
+    label: "Botany Ingridient",
+    subtypes: {
+      wood: "Wood",
+      food: "Fruit and Vegetable",
+      plant: "Plant",
+      shroom: "Mushrooms",
+      misc: "Miscellaneous",
+    }
+  };
+
+  CONFIG.DND5E.lootTypes['loot'] = {
+    label: "Loot",
+    subtypes: {
+      art: "Art Object",
+      gear: "Adventuring Gear",
+      gem: "Gemstone",
+      junk: "Junk",
+      treasure: "Treasure",
+    }
+  }
+}
+
 Hooks.once("init", () => {
+  CONFIG.FANC = FANC
+
   CONFIG.DND5E.abilities[cusAbilities[0].abbreviation] = cusAbilities[0];
   CONFIG.DND5E.abilities[cusAbilities[1].abbreviation] = cusAbilities[1];
 
   SetupTools();
+  SetupLootTypes();
 });
 
 Hooks.once('setup', function () {
