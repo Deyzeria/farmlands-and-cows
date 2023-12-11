@@ -25,7 +25,9 @@
   "esmodules": [
     "/farmlands-and-cows.mjs"
   ],
+  "manifest": "https://raw.githubusercontent.com/Sinantrarion/farmlands-and-cows/master/module.json",
   "url": "https://github.com/Sinantrarion/farmlands-and-cows",
+  "download": "https://github.com/Sinantrarion/farmlands-and-cows/archive/refs/heads/main.zip"
   "packs": [
     {
       "name": "tools",
