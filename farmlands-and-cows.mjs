@@ -1,5 +1,3 @@
-import FANC from "./config.mjs";
-
 const cusAbilities = [{ label: "Gathering", abbreviation: "gat", type: "physical" }, { label: "Crafting", abbreviation: "crt", type: "mental" }];
 const cusSkills = ['tec', 'mys'];
 
@@ -104,6 +102,13 @@ function SetupLootTypes() {
     }
   };
 
+  CONFIG.DND5E.lootTypes['shared'] = {
+    label: "Shared Ingridient",
+    subtypes: {
+      ingot: "Ingot"
+    }
+  }
+
   CONFIG.DND5E.lootTypes['mining'] = {
     label: "Mining Ingridient",
     subtypes: {
@@ -138,14 +143,19 @@ function SetupLootTypes() {
   }
 }
 
-Hooks.once("init", () => {
-  CONFIG.FANC = FANC
+function SetupEquipmentTypes() {
+  CONFIG.DND5E.miscEquipmentTypes["building"] = "Building";
+  CONFIG.DND5E.miscEquipmentTypes["buildprot"] = "Building Protection";
+}
 
+Hooks.once("init", () => {
   CONFIG.DND5E.abilities[cusAbilities[0].abbreviation] = cusAbilities[0];
   CONFIG.DND5E.abilities[cusAbilities[1].abbreviation] = cusAbilities[1];
 
   SetupTools();
   SetupLootTypes();
+  SetupEquipmentTypes();
+  CONFIG.DND5E.consumableTypes["building"] = "Building";
 });
 
 Hooks.once('setup', function () {
